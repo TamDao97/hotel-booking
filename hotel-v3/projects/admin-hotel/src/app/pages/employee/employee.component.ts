@@ -1,11 +1,11 @@
-import { Component, OnInit } from '@angular/core';
-import { ApiService } from '../../_service/api.service';
-import { Staff } from '../../models/staff.model';
+import { Component, OnInit, ViewChild } from "@angular/core";
+import { ApiService } from "../../_service/api.service";
+import { Staff } from "../../models/staff.model";
 
 @Component({
-  selector: 'app-employee',
-  templateUrl: './employee.component.html',
-  styleUrls: ['./employee.component.css']
+    selector: "app-employee",
+    templateUrl: "./employee.component.html",
+    styleUrls: ["./employee.component.css"],
 })
 export class EmployeeComponent implements OnInit {
     Accounts: Staff[] = [];
@@ -13,32 +13,39 @@ export class EmployeeComponent implements OnInit {
     numAccount!: number;
     numbBookings!: number;
     revenueTotal!: number;
-    searchTerm2: string = '';
+    searchTerm2: string = "";
+    employee!: Staff;
 
-    constructor(private api: ApiService) { }
+    constructor(private api: ApiService) {}
+
     ngOnInit(): void {
-
-        this.api.getallEmployee().subscribe(res => {
-            this.Accounts = res;
-            this.roomTypeResult = this.Accounts
-            console.log(this.Accounts)
-
-        })
+        this.onReload();
     }
-    
+
     searchBookings2() {
         // Chuyển đổi từ khóa tìm kiếm thành chữ thường
         const searchTerm = this.searchTerm2.toLowerCase();
         // Lọc các đặt phòng dựa trên từ khóa tìm kiếm
-        this.Accounts = this.Accounts.filter((item) =>
-            item.email.includes(searchTerm) ||
-            item.userName.toLowerCase().includes(searchTerm)
-
+        this.Accounts = this.Accounts.filter(
+            (item) =>
+                item.email.includes(searchTerm) ||
+                item.userName.toLowerCase().includes(searchTerm)
         );
-        this.searchTerm2 = ''
-
+        this.searchTerm2 = "";
     }
+
     clearSearch2() {
-        this.Accounts = this.roomTypeResult
+        this.Accounts = this.roomTypeResult;
+    }
+
+    openModal(item: any) {
+        this.employee = item;
+    }
+
+    onReload(): void {
+        this.api.getallEmployee().subscribe((res) => {
+            this.Accounts = res;
+            this.roomTypeResult = this.Accounts;
+        });
     }
 }

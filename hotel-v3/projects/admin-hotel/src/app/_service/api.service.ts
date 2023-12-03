@@ -344,4 +344,11 @@ export class ApiService {
                 `/v2/admin/revenue/get-for-type-room?year=${year}`
         );
     }
+
+    saveUserRole(payload: any): Observable<any> {
+        return this.http.post(
+            environment.BASE_URL_API + `/v2/admin/account/save-user-role`,
+            payload
+        );
+    }
 }

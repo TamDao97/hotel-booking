@@ -1,9 +1,13 @@
 ﻿using AutoMapper;
 using Database.Data;
+using Database.Models;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using WebHotel.Commom;
+using WebHotel.DTO;
 using WebHotel.DTO.AccountDtos;
+using WebHotel.DTO.UserDtos;
 
 namespace WebHotel.Controllers.AdminController;
 
@@ -76,5 +80,17 @@ public class AccountAdminController : ControllerBase
         var accounts = _mapper.Map<List<AccountResponseDto>>(user);
 
         return Ok(accounts);
+    }
+
+    [HttpPost("save-user-role")]
+    public async Task<IActionResult> SaveUserRole(UserRoleCreateReqDto req)
+    {
+        var lstRemove = _context.UserRoles.Where(r => r.UserId == req.UserId);
+        _context.UserRoles.RemoveRange(lstRemove);
+
+        var userRole = _mapper.Map<ApplicationUserRole>(req);
+        _context.UserRoles.Add(userRole);
+        _context.SaveChanges();
+        return Ok(ResponseApi<bool>.Success(true));
     }
 }

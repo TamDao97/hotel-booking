@@ -16,4 +16,5 @@ public class AccountResponseDto
     public bool LockoutEnabled { get; set; }
     public int AccessFailedCount { get; set; }
     public List<string> Roles { get; set; } = null!;
+    public List<string> IdRoles { get; set; } = null!;
 }

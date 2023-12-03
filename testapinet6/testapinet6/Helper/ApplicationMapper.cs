@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
 using Database.Models;
 using DataBase.Models;
+using Microsoft.AspNetCore.Identity;
+using WebHotel.Commom;
 using WebHotel.Controllers.AdminController;
 using WebHotel.Controllers.UserController;
 using WebHotel.DTO;
@@ -113,6 +115,9 @@ namespace WebHotel.Helper
                 .ForMember(
                     d => d.Roles,
                     o => o.MapFrom(source => source.UserRoles.Select(a => a.Role!.Name).ToList())
+                ).ForMember(
+                    d => d.IdRoles,
+                    o => o.MapFrom(source => source.UserRoles.Select(a => a.Role!.Id).ToList())
                 );
 
             CreateMap<AccountResponseTopDto, ApplicationUser>()
@@ -167,6 +172,8 @@ namespace WebHotel.Helper
 
             CreateMap<QuestionCreateDto, Question>().ReverseMap();
             CreateMap<QuestionResponseDto, Question>().ReverseMap();
+
+            CreateMap<UserRoleCreateReqDto, ApplicationUserRole>().ReverseMap();
         }
     }
 }

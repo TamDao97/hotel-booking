@@ -22,17 +22,15 @@ export class HeaderComponent {
   ) {}
   ngOnInit(): void {
     if (this.auth.isLoggedIn()) {
-      if (localStorage.getItem('user_profile')!.length > 0) {
+      if (localStorage.getItem('user_profile')!?.length > 0) {
         let result = localStorage.getItem('user_profile')!;
         this.userProfile = JSON.parse(result) as userProfile;
         console.log(1);
-
       } else {
         this.getUserProfile();
       }
     }
     console.log(2);
-
   }
   getUserProfile(): any {
     this.userService.getUserProfile().subscribe((res) => {

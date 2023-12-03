@@ -1,0 +1,58 @@
+<div 
+    id="modal-assign-role"
+    class="modal fade"
+    tabindex="-1"
+    role="dialog"
+    aria-hidden="true"
+>
+    <div class="modal-dialog modal-top modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="topModalLabel">{{ title }}</h4>
+                <button
+                    type="button"
+                    class="btn-close"
+                    data-bs-dismiss="modal"
+                    aria-hidden="true"
+                ></button>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal" [formGroup]="frmGroup">
+                    <label id="example-radio-group-label"
+                        >Please choose role</label
+                    >
+                    <mat-radio-group
+                        aria-labelledby="example-radio-group-label"
+                        class="example-radio-group"
+                        formControlName="roleId"
+                    >
+                        <mat-radio-button
+                            *ngFor="let role of lstRole"
+                            class="example-radio-button"
+                            [value]="role.id"
+                            >{{ role.name }}</mat-radio-button
+                        >
+                    </mat-radio-group>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button
+                    type="button"
+                    (click)="onSave()"
+                    class="btn btn-info"
+                    data-bs-dismiss="modal"
+                >
+                    Save
+                </button>
+                <button
+                    type="button"
+                    class="btn btn-danger"
+                    data-bs-dismiss="modal"
+                >
+                    Close
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -65,12 +65,14 @@ import { SalaryComponent } from "./pages/salary/salary.component";
 import { RoleComponent } from "./pages/role/role.component";
 import { UserProfileComponent } from "./pages/user-profile/user-profile.component";
 import { SignupComponent } from "./pages/signup/signup.component";
-import { environment } from "src/environments/environment.development";
+import { environment } from "src/environments/environment.development"; 
 import { ContactComponent } from "./pages/contact/contact.component";
 import { MatTabsModule } from "@angular/material/tabs";
+import { MatRadioModule } from "@angular/material/radio";
 import { MatPaginatorModule } from "@angular/material/paginator";
 import { ContactListTabComponent } from "./pages/contact/contact-list-tab/contact-list-tab.component";
 import { QuestionListTabComponent } from "./pages/contact/question-list-tab/question-list-tab.component";
+import { RoleAssignComponent } from "./pages/role/role-assign/role-assign.component";
 @NgModule({
     declarations: [
         ChartComponent,
@@ -110,6 +112,7 @@ import { QuestionListTabComponent } from "./pages/contact/question-list-tab/ques
         ContactComponent,
         ContactListTabComponent,
         QuestionListTabComponent,
+        RoleAssignComponent,
     ],
     imports: [
         NgApexchartsModule,
@@ -144,6 +147,7 @@ import { QuestionListTabComponent } from "./pages/contact/question-list-tab/ques
         MatListModule,
         MatTabsModule,
         MatPaginatorModule,
+        MatRadioModule,
         HighchartsChartModule,
         JwtModule.forRoot({
             jwtOptionsProvider: {
