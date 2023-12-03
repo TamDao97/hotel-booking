@@ -14,7 +14,6 @@
         public string? Address { get; set; }
         public string? Message { get; set; }
         public DateTime? CreatedAt { get; set; }
-        public bool? Status { get; set; }
     }
 
     public class ContactResponseDto : ContactCreateDto

@@ -67,6 +67,10 @@ import { UserProfileComponent } from "./pages/user-profile/user-profile.componen
 import { SignupComponent } from "./pages/signup/signup.component";
 import { environment } from "src/environments/environment.development";
 import { ContactComponent } from "./pages/contact/contact.component";
+import { MatTabsModule } from "@angular/material/tabs";
+import { MatPaginatorModule } from "@angular/material/paginator";
+import { ContactListTabComponent } from "./pages/contact/contact-list-tab/contact-list-tab.component";
+import { QuestionListTabComponent } from "./pages/contact/question-list-tab/question-list-tab.component";
 @NgModule({
     declarations: [
         ChartComponent,
@@ -104,6 +108,8 @@ import { ContactComponent } from "./pages/contact/contact.component";
         UserProfileComponent,
         SignupComponent,
         ContactComponent,
+        ContactListTabComponent,
+        QuestionListTabComponent,
     ],
     imports: [
         NgApexchartsModule,
@@ -136,6 +142,8 @@ import { ContactComponent } from "./pages/contact/contact.component";
         MatIconModule,
         MatDividerModule,
         MatListModule,
+        MatTabsModule,
+        MatPaginatorModule,
         HighchartsChartModule,
         JwtModule.forRoot({
             jwtOptionsProvider: {

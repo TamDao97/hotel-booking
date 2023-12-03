@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using WebHotel.Commom;
+using WebHotel.DTO;
 using WebHotel.DTO.AccountDtos;
 using WebHotel.DTO.ContactDtos;
 using WebHotel.DTO.QuestionDtos;
@@ -36,9 +37,21 @@ namespace WebHotel.Controllers.AdminController
                                 || r.FullName.ToLower().Trim().Contains(grid.KeyWord.ToLower().Trim()));
             }
 
-            var datas = query.Skip((grid.PageIndex - 1) * grid.PageSize).Take(grid.PageSize).ToList();
-            var lstData = _mapper.Map<List<ContactResponseDto>>(datas);
-            return Ok(lstData);
+            int totalCount = query.Select(r => r.Id).Count();
+            var datas = query.Skip((grid.PageIndex - 1) * grid.PageSize)
+                            .Take(grid.PageSize)
+                            .Select(r => _mapper.Map<ContactResponseDto>(r))
+                            .ToList();
+
+            GridReponseApi<ContactResponseDto> gridData = new GridReponseApi<ContactResponseDto>
+            {
+                PageIndex = grid.PageIndex,
+                PageSize = grid.PageSize,
+                TotalData = totalCount,
+                GridData = datas
+            };
+
+            return Ok(ResponseApi<GridReponseApi<ContactResponseDto>>.Success(gridData));
         }
 
         [HttpPost("get-all-question")]
@@ -52,9 +65,21 @@ namespace WebHotel.Controllers.AdminController
                                 || r.Content.ToLower().Trim().Contains(grid.KeyWord.ToLower().Trim()));
             }
 
-            var datas = query.Skip((grid.PageIndex - 1) * grid.PageSize).Take(grid.PageSize).ToList();
-            var lstData = _mapper.Map<List<ContactResponseDto>>(datas);
-            return Ok(lstData);
+            int totalCount = query.Select(r => r.Id).Count();
+            var datas = query.Skip((grid.PageIndex - 1) * grid.PageSize)
+                            .Take(grid.PageSize)
+                            .Select(r => _mapper.Map<QuestionResponseDto>(r))
+                            .ToList();
+
+            GridReponseApi<QuestionResponseDto> gridData = new GridReponseApi<QuestionResponseDto>
+            {
+                PageIndex = grid.PageIndex,
+                PageSize = grid.PageSize,
+                TotalData = totalCount,
+                GridData = datas
+            };
+
+            return Ok(ResponseApi<GridReponseApi<QuestionResponseDto>>.Success(gridData));
         }
     }
 }

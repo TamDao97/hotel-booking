@@ -28,7 +28,6 @@ namespace WebHotel.Repository.UserRepository.ContactRepository
             if (contact is not null)
             {
                 contact.CreatedAt = DateTime.Now;
-                contact.Status = true;
                 await _context.AddAsync(contact);
                 await _context.SaveChangesAsync();
                 return new StatusDto { StatusCode = 1, Message = "Successful!" };
