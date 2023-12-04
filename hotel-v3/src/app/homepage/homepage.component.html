@@ -778,7 +778,7 @@
                   <label class="label-title"> Questions </label>
                   <textarea
                     formControlName="content"
-                    name="message"
+                    name="content"
                     class="form--control form-message radius-10"
                     placeholder="Type Your Questons..."
                     [ngClass]="{
@@ -790,7 +790,7 @@
                     class="invalid-feedback"
                   >
                     <div *ngIf="f['content'].errors['required']">
-                      Name is required
+                      Content is required
                     </div>
                   </div>
                 </div>

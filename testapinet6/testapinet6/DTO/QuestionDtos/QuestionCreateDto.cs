@@ -11,7 +11,7 @@ namespace WebHotel.DTO.QuestionDtos
         public DateTime CreatedAt { get; set; }
     }
 
-    public class QuestionResponseDto : ContactCreateDto
+    public class QuestionResponseDto : QuestionCreateDto
     {
     }
 

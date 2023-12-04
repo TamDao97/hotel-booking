@@ -156,7 +156,7 @@ export class HomepageComponent implements OnInit {
     this.question = this.fb.group({
       name: ['', Validators.required, Validators.name],
       email: ['', [Validators.required, Validators.email]],
-      content: ['', Validators.required, Validators.name],
+      content: ['', Validators.required],
     });
   }
 
