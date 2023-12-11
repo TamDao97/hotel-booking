@@ -20,8 +20,7 @@ export class ApiService {
   room: any;
   blog: any;
   apiRooms = environment.BASE_URL_API + '/user/room/get-all';
-  apiBlog =
-    environment.BASE_URL_API + '/user/blog/get-all';
+  apiBlog = environment.BASE_URL_API + '/user/blog/get-all';
   apiRoomm = 'http://localhost:3000/rooms';
   getRooms() {
     // return this.http.get<Room[]>(environment.BASE_URL_API + '/user/room/get-all');
@@ -127,10 +126,11 @@ export class ApiService {
     );
   }
   /////////////////////////// Voting
-  votingStar(stars: number, roomid: string) {
+  votingStar(stars: number, roomid: string, userId: string) {
     const data = {
       number: stars,
       roomId: roomid,
+      userId: userId,
     };
     return this.http.post(
       environment.BASE_URL_API + '/user/room-star/create',

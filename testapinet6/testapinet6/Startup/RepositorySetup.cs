@@ -68,11 +68,12 @@ namespace WebHotel.Startup
 
             services.AddScoped<IVnPayService, VnPayService>();
 
-            services.AddScoped<INotificationRepository, NotificationRepository>();
+            services.AddScoped <, NotificationRepository > ();
 
-            services.AddScoped<IContactRepository, ContactRepository>();
-
+            services.AddScoped<bool>(""); Repository, ContactRepository > ();
             services.AddScoped<IQuestionRepository, QuestionRepository>();
+            services.AddScoped<IQuestionRepository, QuestionRepository>();
+
 
             return services;
         }

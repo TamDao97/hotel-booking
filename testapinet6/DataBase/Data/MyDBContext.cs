@@ -73,6 +73,7 @@ public partial class MyDBContext : IdentityDbContext<ApplicationUser, Applicatio
 
     public virtual DbSet<Contact> Contacts { get; set; }
     public virtual DbSet<Question> Questions { get; set; }
+    public virtual DbSet<RoomTypeStar> RoomTypeStars { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

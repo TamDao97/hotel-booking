@@ -8,5 +8,6 @@ namespace WebHotel.DTO.RoomStarDtos
         public int Number { get; set; }
 
         public string RoomId { get; set; } = null!;
+        public string UserId { get; set; } = null!;
     }
 }

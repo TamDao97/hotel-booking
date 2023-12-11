@@ -1,6 +1,9 @@
 ﻿using AutoMapper;
 using Database.Data;
 using Database.Models;
+using DataBase.Models;
+using Microsoft.EntityFrameworkCore;
+using System.Linq;
 using WebHotel.DTO;
 using WebHotel.DTO.RoomStarDtos;
 
@@ -26,6 +29,31 @@ namespace WebHotel.Repository.UserRepository.RoomStarRepository
                 room.StarValue += roomStarRequestDto.Number;
                 room.StarAmount++;
                 room.StarSum = room.StarValue / room.StarAmount;
+
+                var roomType = _context.RoomTypes.AsNoTracking().Where(r => r.Id == room.RoomTypeId).FirstOrDefault();
+                RoomTypeStar roomTypeStar = new RoomTypeStar
+                {
+                    IdUser = int.Parse(roomStarRequestDto.UserId),
+                    CreatedAt = DateTime.Now
+                };
+
+                if (roomType.TypeName.Contains("STD"))
+                {
+                    roomTypeStar.Std = (roomTypeStar.Std ?? 0) + 1;
+                }
+                else if (roomType.TypeName.Contains("SUP"))
+                {
+                    roomTypeStar.Std = (roomTypeStar.Sup ?? 0) + 1;
+                }
+                else if (roomType.TypeName.Contains("DLX"))
+                {
+                    roomTypeStar.Std = (roomTypeStar.Dlx ?? 0) + 1;
+                }
+                else if (roomType.TypeName.Contains("SUT"))
+                {
+                    roomTypeStar.Std = (roomTypeStar.Sut ?? 0) + 1;
+                }
+                _context.RoomTypeStars.Add(roomTypeStar);
                 await _context.SaveChangesAsync();
                 return new StatusDto { StatusCode = 1, Message = "Successful comment!" };
             }
